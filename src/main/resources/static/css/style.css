@@ -182,35 +182,3 @@ footer {
   padding: 1%;
   font-size: 110%;
 }
-Note
-
-Feel free to study this CSS on your own.
-
-Next, we'll create the first JavaScript file to help with some functionality. Create a new directory called js, then create a new file inside js called upvote.js. Copy and paste the following code into the newly created upvote.js file:
-
-async function upvoteClickHandler(event) {
-  event.preventDefault();
-
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
-
-
-  const response = await fetch('/posts/upvote', {
-    method: 'PUT',
-    body: JSON.stringify({
-        postId: id
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-
-  if (response.ok) {
-    document.location.reload();
-  } else {
-    alert(response.statusText);
-  }
-}
-
-document.querySelector('.upvote-btn').addEventListener('click', upvoteClickHandler);
